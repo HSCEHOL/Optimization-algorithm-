@@ -302,7 +302,7 @@ public class Main {
         double a = sa.solve(p1, 100, 0.99, 2000, 2000, 5000);
         System.out.println("\ny=ax 선형 모델에 가장 적합한 파라미터");
         System.out.println("a : " + a);
-        System.out.println("데이터와의 차이값 : " + p1.fit(a));
+     
 
         Problem p2 = new Problem() {
             @Override
@@ -324,7 +324,7 @@ public class Main {
         System.out.println("\ny=ax+b 선형 모델에 가장 적합한 파라미터");
         System.out.println("a : " + a);
         System.out.println("b : " + b);
-        System.out.println("데이터와의 차이값 : " + p2.fit(b));
+        
     }
 }
 ```
