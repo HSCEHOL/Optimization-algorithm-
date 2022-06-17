@@ -425,5 +425,8 @@ niter = 1000000            // 최적해를 구하기 위한 전체 반복 루프
 ![5](https://user-images.githubusercontent.com/101388379/174226439-07f44795-8fe5-433b-85c2-071c2e030de4.PNG)
 ![6](https://user-images.githubusercontent.com/101388379/174226442-1908a3cd-889f-4aa0-aeec-6b66521953bb.PNG)<br>
 ![7](https://user-images.githubusercontent.com/101388379/174226445-c7527b3f-8909-42af-9020-ab4e61480df9.PNG)
-![8](https://user-images.githubusercontent.com/101388379/174226451-f2db625c-2b63-42f7-b739-eeb10fbff688.PNG)<br>
+![8](https://user-images.githubusercontent.com/101388379/174226451-f2db625c-2b63-42f7-b739-eeb10fbff688.PNG)<br> 
+
+**▶20번 중 1번 튀는 값이 나왔고 , 나머지 값들은 편차가 거의 없었다. a = 19에서 +-0.5 정도의 편차를 보이고** <br>
+**b 같은 경우에는 a에 비해 편차가 조금 나타나는 편이지만 ,경향성을 파악하는데 전혀 문제가 없다.** 
 
