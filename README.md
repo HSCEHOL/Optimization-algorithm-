@@ -351,5 +351,6 @@ double[][] data = {{0.8, 34}, {1.2, 46}, {1.3, 40}, {1.5, 64}, {1.8, 81}, {2, 80
 
 **실행 결과로부터 추정된 회귀식을 구했다.** 
 
-![회귀식](https://user-images.githubusercontent.com/101388379/174204376-bdce7c0c-e7dc-4ac0-8662-daf27764f45d.PNG)
+![새로운 값](https://user-images.githubusercontent.com/101388379/174205588-ef604a98-bffd-4454-b9e3-89a8d296de4a.PNG)
+
 
