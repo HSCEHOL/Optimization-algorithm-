@@ -187,4 +187,97 @@ repeat
 **3. 평가값(1)과 평가값(2)를 비교했을때 , 평가값(2)가 더 작으면 , 이웃해를 새로운 해로 받아들인다.**
 
 **4.동일한 온도 T에서 위의 과정을 t회 반복 한다. 온도 T는 △T만큼 변화시켜주고** <br>
-**T인 온도가 임의의 0.001(특정온도)과 같은 온도보다 낮아지면 break 해준다.**
+**T인 온도가 임의의 0.001(특정온도)과 같은 온도보다 낮아지면 break 해준다.**<br>
+---
+---
+## 실제 구현해보기
+
+**이제 위에서 알고리즘의 작동방식에 대해서도 알아봤으니 , 실제로 구현해보고 분석하는 과정을 거쳐보자.**
+<br><br>
+
+제일 먼저 **Interface Problem** 을 구현하도록 한다. <br>
+이  **Interface Problem** 안에는 **문제의 적합도를 판별할 fit 메소드** <br>
+**현재의 후보해와 이웃해의 적합도를 비교하는 isNeighborBetter 메소드** 를 생성해준다.
+```java
+public interface Problem {
+    
+    double fit(double x);                                     //문제의 적합도 판별
+    boolean isNeighborBetter(double f0, double f1);           //후보해와 이웃해의 적합도 비교
+
+}
+```
+<br>
+
+두번째로 **class SimulatedAnnealing** 을 구현해보자.
+```java
+public class SimulatedAnnealing {
+    private int niter;
+    public ArrayList<Double> hist; 
+
+    public SimulatedAnnealing(int niter) {
+        this.niter = niter;
+        hist = new ArrayList<>();
+    }
+
+    public double solve(Problem p, double t, double a, double lower, double upper) {
+        Random r = new Random();
+        double x0 = r.nextDouble() * (upper - lower) + lower; //
+        return solve(p, t, a, x0, lower, upper);
+    }
+ ```
+   
+  **최적해 도달까지 변화한 적합도 값을 저장한다.**
+  
+  **solve 메소드에 초기 후보해를 인수로 전달 해 주지 않을 경우 지정**  <br>
+  **그리고 초기 후보해를 넣어 오버로딩한 solve 메소드를 호출한다.**
+  
+  ```java
+   public double solve(Problem p, double t, double a, double x0, double lower, double upper) {
+        Random r = new Random();
+        double f0 = p.fit(x0);
+        hist.add(f0);
+        if (a >= 1) {
+            a = 0.99;
+        } 
+        for (int i = 0; i < niter; i++) {
+            int kt = (int) t; 
+            for (int j = 0; j < kt; j++) {
+                double x1 = r.nextDouble() * (upper - lower) + lower; 
+                double f1 = p.fit(x1);
+```
+
+**위의 설명한 알고리즘에서 보았듯이 T는 갈수록 0에 가까워져야 하므로 냉각률이 1이상일 경우 a=0.99로 설정한다.** <br>
+**온도 t에서의 for-루프 반복 횟수는 kt. 이때 , t가 낮아질수록 for - 루프 반복 횟수도 작아진다.** <br>
+**이웃해를 선택한다**
+  
+```java
+if (p.isNeighborBetter(f0, f1)) {
+                    x0 = x1;
+                    f0 = f1; 
+                    hist.add(f0);
+                } else { 
+                    double d = Math.abs(f1 - f0);
+                    double p0 = Math.exp(-d / t);
+                    if (r.nextDouble() < p0) {                  
+                        x0 = x1;
+                        f0 = f1; 
+                        hist.add(f0);
+                    }
+                }
+            }
+            t *= a;
+        }
+        return x0;
+    }
+}
+```
+
+**이웃해의 적합도가 더 높을 경우 이웃해를 후보해로 선택한다** <br>
+**좋지 않은 이웃해를 선택할 확률 p0는 t에 반비례 , d(후보해와 이웃해 차이)와 비례**<br>
+**현재 후보해의 적합도가 높더라도 자유롭게 탐색할 확률에 따라 좋지 못한 이웃해를 선택** <br><br>
+
+세번째로 , 선형 모델 데이터의 가장 적합한 파라미터를 찾는 **main**을 구현한다.
+
+
+
+  
