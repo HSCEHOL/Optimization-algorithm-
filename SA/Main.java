@@ -5,7 +5,7 @@ public class Main {
         SimulatedAnnealing sa = new SimulatedAnnealing(1000000);
         double[][] data = {{0.8, 34}, {1.2, 46}, {1.3, 40}, {1.5, 64}, {1.8, 81}, {2, 80}, {2.3, 85}, {3, 98}, {4.7, 121}, {5.5, 136}, {7, 154},
                 {8.2 , 165} , {10.2 , 201} , {14,230} , {13,206} ,{10.9,200} , {11.5 , 201} , {12.6 , 240} , {11 ,243} , {11,230} , {10.3 , 236}};
-
+                          //삼성전자 마케팅비 매출액
         Problem p1 = new Problem() {
             @Override
             public double fit(double x) {
