@@ -297,7 +297,7 @@ public class Main {
                 return f0 > f1;
             } 
         };
-        double a = sa.solve(p1, 100, 0.99, 2000, 2000, 5000);
+        double a = sa.solve(p1, 100, 0.99, 2000, 0, 5000);
         System.out.println("\ny=ax 선형 모델에 가장 적합한 파라미터");
         System.out.println("a : " + a);
      
@@ -318,7 +318,7 @@ public class Main {
                 return f0 > f1;
             } //작은값선택
         };
-        double b = sa.solve(p2, 100, 0.99, 2000, 2000, 5000);
+        double b = sa.solve(p2, 100, 0.99, 2000, 0, 5000);
         System.out.println("\ny=ax+b 선형 모델에 가장 적합한 파라미터");
         System.out.println("a : " + a);
         System.out.println("b : " + b);
